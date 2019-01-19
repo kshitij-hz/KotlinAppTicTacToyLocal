@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     fun restartGame(view: View){
         player1.clear()
         player2.clear()
+        winnerArray.clear()
         ActivePlayer = 1
         reinitializeBoxes(bu1)
         reinitializeBoxes(bu2)
@@ -59,74 +60,134 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun changeWinnerColor(){
+        if(1 in winnerArray) bu1.setBackgroundResource(R.color.colorWinnerGreen)
+        if(2 in winnerArray) bu2.setBackgroundResource(R.color.colorWinnerGreen)
+        if(3 in winnerArray) bu3.setBackgroundResource(R.color.colorWinnerGreen)
+        if(4 in winnerArray) bu4.setBackgroundResource(R.color.colorWinnerGreen)
+        if(5 in winnerArray) bu5.setBackgroundResource(R.color.colorWinnerGreen)
+        if(6 in winnerArray) bu6.setBackgroundResource(R.color.colorWinnerGreen)
+        if(7 in winnerArray) bu7.setBackgroundResource(R.color.colorWinnerGreen)
+        if(8 in winnerArray) bu8.setBackgroundResource(R.color.colorWinnerGreen)
+        if(9 in winnerArray) bu9.setBackgroundResource(R.color.colorWinnerGreen)
+    }
+
      private fun CheckWinner() {
         var winner = -1
-
-        // row 1
+         // row 1
         if(player1.contains(1) && player1.contains(2) && player1.contains(3)){
             winner=1
+            winnerArray.add(1)
+            winnerArray.add(2)
+            winnerArray.add(3)
         }
         if(player2.contains(1) && player2.contains(2) && player2.contains(3)){
             winner=2
+            winnerArray.add(1)
+            winnerArray.add(2)
+            winnerArray.add(3)
         }
 
         // row 2
         if(player1.contains(4) && player1.contains(5) && player1.contains(6)){
             winner=1
+            winnerArray.add(4)
+            winnerArray.add(5)
+            winnerArray.add(6)
         }
         if(player2.contains(4) && player2.contains(5) && player2.contains(6)){
             winner=2
+            winnerArray.add(4)
+            winnerArray.add(5)
+            winnerArray.add(6)
         }
 
         // row 3
         if(player1.contains(7) && player1.contains(8) && player1.contains(9)){
             winner=1
+            winnerArray.add(7)
+            winnerArray.add(8)
+            winnerArray.add(9)
         }
         if(player2.contains(7) && player2.contains(8) && player2.contains(9)){
             winner=2
+            winnerArray.add(7)
+            winnerArray.add(8)
+            winnerArray.add(9)
         }
 
         // col 1
         if(player1.contains(1) && player1.contains(4) && player1.contains(7)){
             winner=1
+            winnerArray.add(1)
+            winnerArray.add(4)
+            winnerArray.add(7)
         }
         if(player2.contains(1) && player2.contains(4) && player2.contains(7)){
             winner=2
+            winnerArray.add(1)
+            winnerArray.add(4)
+            winnerArray.add(7)
         }
 
         // col 2
         if(player1.contains(2) && player1.contains(5) && player1.contains(8)){
             winner=1
+            winnerArray.add(2)
+            winnerArray.add(5)
+            winnerArray.add(8)
         }
         if(player2.contains(2) && player2.contains(5) && player2.contains(8)){
             winner=2
+            winnerArray.add(2)
+            winnerArray.add(5)
+            winnerArray.add(8)
         }
 
         // col 3
         if(player1.contains(3) && player1.contains(6) && player1.contains(9)){
             winner=1
+            winnerArray.add(3)
+            winnerArray.add(6)
+            winnerArray.add(9)
         }
         if(player2.contains(3) && player2.contains(6) && player2.contains(9)){
             winner=2
+            winnerArray.add(3)
+            winnerArray.add(6)
+            winnerArray.add(9)
         }
 
         // diagonal 1
         if(player1.contains(1) && player1.contains(5) && player1.contains(9)){
             winner=1
+            winnerArray.add(1)
+            winnerArray.add(5)
+            winnerArray.add(9)
         }
         if(player2.contains(1) && player2.contains(5) && player2.contains(9)){
             winner=2
+            winnerArray.add(1)
+            winnerArray.add(5)
+            winnerArray.add(9)
         }
 
         // diagonal 2
         if(player1.contains(3) && player1.contains(5) && player1.contains(7)){
             winner=1
+            winnerArray.add(3)
+            winnerArray.add(5)
+            winnerArray.add(7)
         }
         if(player2.contains(3) && player2.contains(5) && player2.contains(7)){
             winner=2
+            winnerArray.add(3)
+            winnerArray.add(5)
+            winnerArray.add(7)
         }
 
         if(winner != -1){
+            changeWinnerColor()
             Toast.makeText(this, "Player " + winner + " win the game", Toast.LENGTH_LONG).show()
             bu1.isEnabled = false
             bu2.isEnabled = false
@@ -143,6 +204,7 @@ class MainActivity : AppCompatActivity() {
 
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
+    var winnerArray = ArrayList<Int>()
     var ActivePlayer = 1
 
      private fun PlayGame(cellId: Int, buSelected: Button) {
