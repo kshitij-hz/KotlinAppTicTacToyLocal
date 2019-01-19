@@ -3,6 +3,7 @@ package com.alrubaye.startup
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    protected fun restartGame(view: View){
+    fun restartGame(view: View){
         player1.clear()
         player2.clear()
         ActivePlayer = 1
@@ -31,13 +32,13 @@ class MainActivity : AppCompatActivity() {
         winnerMsg.text = ""
     }
 
-    private fun reinitializeBoxes(btn: Button){
+     private fun reinitializeBoxes(btn: Button){
         btn.isEnabled = true
         btn.text = ""
         btn.setBackgroundResource(R.color.colorPrimary)
     }
 
-    protected fun buClick(view: View){
+     fun buClick(view: View){
         val buSelected = view as Button
         var cellId = 0
         when(buSelected.id){
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun CheckWinner() {
+     private fun CheckWinner() {
         var winner = -1
 
         // row 1
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(winner != -1){
-            //Toast.makeText(this, "Player " + winner + " win the game", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Player " + winner + " win the game", Toast.LENGTH_LONG).show()
             bu1.isEnabled = false
             bu2.isEnabled = false
             bu3.isEnabled = false
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     var player2 = ArrayList<Int>()
     var ActivePlayer = 1
 
-    private fun PlayGame(cellId: Int, buSelected: Button) {
+     private fun PlayGame(cellId: Int, buSelected: Button) {
         if(ActivePlayer==1){
             buSelected.text = "X"
             buSelected.setBackgroundResource(R.color.colorCream)
